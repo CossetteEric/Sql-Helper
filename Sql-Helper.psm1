@@ -1,9 +1,13 @@
-if ((Get-PSSnapin -Name SqlServerCmdletSnapin100 -ErrorAction SilentlyContinue) -eq $null) {
-    Add-PSSnapin SqlServerCmdletSnapin100
+
+if (@(Get-PSSnapin | ? {$_.Name -eq "SqlServerCmdletSnapin100"}).Length -gt 0) {
+    Remove-PSSnapin SqlServerCmdletSnapin100
 }
-if ((Get-PSSnapin -Name SqlServerProviderSnapin100 -ErrorAction SilentlyContinue) -eq $null) {
-    Add-PSSnapin SqlServerProviderSnapin100
+if (@(Get-PSSnapin | ? {$_.Name -eq "SqlServerProviderSnapin100"}).Length -gt 0) {
+    Remove-PSSnapin SqlServerProviderSnapin100
 }
+
+Add-PSSnapin SqlServerCmdletSnapin100
+Add-PSSnapin SqlServerProviderSnapin100
 
 $moduleRoot = Split-Path -Parent $MyInvocation.MyCommand.Path
 
