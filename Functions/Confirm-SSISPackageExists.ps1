@@ -33,7 +33,7 @@ function Confirm-SSISPackageExists {
     $PackageFolder = $FolderPath[($FolderPath.Length - 1)]
     
     $PackageQuery = "SELECT 1 FROM $Database.dbo.sysssispackages WHERE name = '$Package' AND folderid = '$($PackageFolder.folderid)'"
-    $PackageQueryResults = Execute $PackageQuery
+    $PackageQueryResults = Invoke-Query $Query $SqlServer
     
     if (!$PackageQueryResults) {
         return $false
