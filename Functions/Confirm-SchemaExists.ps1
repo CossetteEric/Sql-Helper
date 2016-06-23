@@ -1,6 +1,7 @@
 function Confirm-SchemaExists {
     Param(
         [string]$Database,
+        [string]$Schema,
         [string]$SqlServer
     )
     
